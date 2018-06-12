@@ -1,5 +1,5 @@
 ﻿/*
- Cheap powershell trick to give the users we're making o365 licenses
+ Cheap powershell trick to give the users we're making o365 licenses (probably doesn't work?)
  */
 
 using System.Management.Automation;
