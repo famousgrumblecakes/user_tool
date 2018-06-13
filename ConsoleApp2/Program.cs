@@ -80,7 +80,6 @@ namespace ConsoleApp2
                         {
                             Console.WriteLine(e.Message.ToString() + "- Did you specify a filename?");
                         }
-
                     }
                     if (i == "-g")
                     {
@@ -95,15 +94,11 @@ namespace ConsoleApp2
                             }
                             else
                             {
-                                Console.WriteLine("adding user to {0}", args[groupcount]);
                                 groupqueue.Enqueue(args[groupcount]);
                             }
 
                         }
-
                         group = groupqueue.ToArray();
-
-
                     }
                     if (i == "-#")
                     {

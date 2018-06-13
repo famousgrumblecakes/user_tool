@@ -18,7 +18,7 @@ namespace ConsoleApp2
             {
                 secure.AppendChar(c);
             }
-            var secureCreds = new PSCredential(creds.username + "@viatechpub.com", secure);
+            var secureCreds = new PSCredential(creds.username + "@yourtennanthere.com", secure);
 
             using (PowerShell ps = PowerShell.Create())
             {

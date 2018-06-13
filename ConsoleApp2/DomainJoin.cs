@@ -1,6 +1,8 @@
 ﻿using System;
 using System.DirectoryServices.AccountManagement;
-
+/*
+Misleading class name, this class does local user creation as well as domain user creation + join 
+*/
 
 namespace ConsoleApp2
 {
@@ -35,7 +37,6 @@ namespace ConsoleApp2
                             up.UserPrincipalName = nu.UPN;
                         }
                         up.Save();
-                        int count = 0;
                         foreach (string i in group)
                         {
                             try
