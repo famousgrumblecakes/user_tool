@@ -83,8 +83,8 @@ namespace ConsoleApp2
                 dmn = location.dmn;
 
                 ctx = ContextType.Domain;
-                container = "CN=Users" +",DC="+ dmn + ",DC=" + location.tld;
-
+                container = string.Concat("CN=Users" + "," + location.container);
+                Console.WriteLine(container);
             }
             nu = nup;
             Console.WriteLine("Adding to:" + dmn);
