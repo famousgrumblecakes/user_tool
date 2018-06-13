@@ -11,7 +11,7 @@ namespace ConsoleApp2
         private NewUser nu;
         private string dmn;
         private ContextType ctx;
-        string group = null;
+        string[] group = null;
         bool aduser = false;
         Credentials o365creds;
         digestFQDN location;
@@ -35,17 +35,21 @@ namespace ConsoleApp2
                             up.UserPrincipalName = nu.UPN;
                         }
                         up.Save();
+                        int count = 0;
+                        foreach (string i in group)
+                        {
+                            try
+                            {
+                                GroupPrincipal gp = GroupPrincipal.FindByIdentity(pc, i);
+                                gp.Members.Add(pc, IdentityType.SamAccountName, up.SamAccountName);
+                                gp.Save();
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine(e.Message.ToString());
+                            }
+                        }
 
-                        try
-                        {
-                            GroupPrincipal gp = GroupPrincipal.FindByIdentity(pc, group);
-                            gp.Members.Add(pc, IdentityType.SamAccountName, up.SamAccountName);
-                            gp.Save();
-                        }
-                        catch(Exception e)
-                        {
-                            Console.WriteLine(e.Message.ToString());
-                        }
 
 //                        createO365 ouser = new createO365(o365creds, up.DisplayName, nu.log_on_name + "@viatechpub.com", nu.first_name, nu.last_name, location.dmn);
                     }
@@ -57,7 +61,7 @@ namespace ConsoleApp2
             }
         }
 
-        public DomainJoin(NewUser nup, Credentials creds, digestFQDN l, bool where, string g)
+        public DomainJoin(NewUser nup, Credentials creds, digestFQDN l, bool where, string[] g)
         {
             o365creds = creds;
             location = l;
@@ -78,7 +82,7 @@ namespace ConsoleApp2
                 dmn = location.dmn;
 
                 ctx = ContextType.Domain;
-                container = "CN="+ group +",DC="+ dmn + ",DC=" + location.tld;
+                container = "CN=Users" +",DC="+ dmn + ",DC=" + location.tld;
 
             }
             nu = nup;

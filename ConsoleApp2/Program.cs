@@ -15,13 +15,12 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
-
             string full_name = "nothing";
             bool where = false;
             bool multiadd = false;
             bool prompt_for_user = true;
             string filename = null;
-            string group = "Users";
+            string[] group = {"Users"};
             Credentials creds = null;
             digestFQDN netinfo = new digestFQDN();
 
@@ -41,7 +40,7 @@ namespace ConsoleApp2
                             "-u         New User's Name\n" +
                             "-d         Make a domain user    Default: local\n" +
                             "-b         read user list from a file\n" +
-                            "-g         Specify a user group  Default: Users\n" +
+                            "-g         {GroupName1 GroupName2 Groupname3}   Specify a user group  Default: Users\n" +
                             "-#         Make Administrator");
 
                         Environment.Exit(0);
@@ -85,17 +84,30 @@ namespace ConsoleApp2
                     }
                     if (i == "-g")
                     {
-                        try
+                        Console.WriteLine("-g detected");
+                        Queue<String> groupqueue = new Queue<string>();
+                        groupqueue.Enqueue("Users");
+                        for (int groupcount = count + 1; groupcount < args.Length; groupcount++)
                         {
-                            group = args[count + 1];
-                        } catch (Exception e)
-                        {
-                            Console.WriteLine(e.Message.ToString() + "- Did you specify a group?");
+                            if (args[groupcount].ToCharArray().First<char>() == '-')
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("adding user to {0}", args[groupcount]);
+                                groupqueue.Enqueue(args[groupcount]);
+                            }
+
                         }
+
+                        group = groupqueue.ToArray();
+
+
                     }
                     if (i == "-#")
                     {
-                        group = "Administrators";
+                        group[0] = "Administrators";
                     }
                     count++;
                 }
@@ -119,7 +131,7 @@ namespace ConsoleApp2
                 while (!sr.EndOfStream)
                 {
                     NewUser user = new NewUser(netinfo, sr.ReadLine());
-                    DomainJoin dj = new DomainJoin(user, creds, netinfo, where, "Users");
+                    DomainJoin dj = new DomainJoin(user, creds, netinfo, where, group);
                 }
             }
         }
