@@ -49,7 +49,6 @@ namespace ConsoleApp2
             password = get_the_password();
             Console.WriteLine();
         }
-
     }
 
 }

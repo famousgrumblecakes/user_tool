@@ -33,7 +33,6 @@ namespace ConsoleApp2
             }
             Console.WriteLine("Your current environment: " + local + "." + dmn + "." + tld);
 
-
             for(int i = 0; i < digest.Length; i++)
             {
                 container = string.Concat(container, digest[i]);

@@ -11,8 +11,6 @@ namespace ConsoleApp2
         public string log_on_name { get; set; }
         digestFQDN home;
 
-
-
         string generate_valid_log_on_name(string f, string l)
         {
             f = f.ToCharArray().First<char>().ToString();
@@ -39,6 +37,5 @@ namespace ConsoleApp2
             log_on_name = generate_valid_log_on_name(first_name, last_name);
             UPN = generate_valid_UPN(log_on_name);
         }
-
     }
 }

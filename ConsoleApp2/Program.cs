@@ -96,7 +96,6 @@ namespace ConsoleApp2
                             {
                                 groupqueue.Enqueue(args[groupcount]);
                             }
-
                         }
                         group = groupqueue.ToArray();
                     }

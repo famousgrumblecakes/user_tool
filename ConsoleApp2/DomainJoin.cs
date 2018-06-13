@@ -50,8 +50,6 @@ namespace ConsoleApp2
                                 Console.WriteLine(e.Message.ToString());
                             }
                         }
-
-
 //                        createO365 ouser = new createO365(o365creds, up.DisplayName, nu.log_on_name + "@viatechpub.com", nu.first_name, nu.last_name, location.dmn);
                     }
                 }
