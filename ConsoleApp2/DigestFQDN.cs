@@ -29,7 +29,7 @@ namespace ConsoleApp2
             tld = digest.Last<string>().ToLower();
             for (int i = 0; i < digest.Length; i++)
             {
-                digest[i] = "DC=" + digest[i] + "";
+                digest[i] = "DC=" + digest[i];
             }
             Console.WriteLine("Your current environment: " + local + "." + dmn + "." + tld);
 
