@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Linq;
 
+/*
+    Form the majority of a user object to give to UserPrincipal
+*/
+
 namespace ConsoleApp2
 {
     class NewUser

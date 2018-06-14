@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
+/*
+THIS IS NOT SECURE LOL 
+*/
 
 namespace ConsoleApp2
 {

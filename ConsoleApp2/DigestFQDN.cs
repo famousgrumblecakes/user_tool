@@ -21,8 +21,6 @@ namespace ConsoleApp2
 
         public digestFQDN()
         {
-
-
             digest = IPGlobalProperties.GetIPGlobalProperties().DomainName.Split('.');
             local = System.Environment.MachineName.ToLower();
             dmn = digest[digest.Length - 2].ToLower();
